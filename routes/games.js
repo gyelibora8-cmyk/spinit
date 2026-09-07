@@ -1,11 +1,11 @@
 const express = require('express');
 const Game = require('../models/Game');
-const auth = require('../middleware/auth');
+
 
 const router = express.Router();
 
 // Get all games
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req,res)=> {
   try {
     const games = await Game.find({ isActive: true });
     res.json(games);
@@ -15,7 +15,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Get single game
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req,res) => {
   try {
     const game = await Game.findById(req.params.id);
     if (!game) {
